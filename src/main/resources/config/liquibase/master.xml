@@ -14,7 +14,24 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227101641_added_entity_SystemFiles.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227101741_added_entity_Courses.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227101841_added_entity_Skill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227101941_added_entity_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102041_added_entity_Planning.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102141_added_entity_CourseGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102241_added_entity_Theme.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102341_added_entity_Student.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102441_added_entity_StudentGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102541_added_entity_Projects.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102641_added_entity_AbilityStudent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20201227101741_added_entity_constraints_Courses.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227101941_added_entity_constraints_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102041_added_entity_constraints_Planning.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102141_added_entity_constraints_CourseGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102241_added_entity_constraints_Theme.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201227102441_added_entity_constraints_StudentGroup.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
