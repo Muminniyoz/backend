@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="courseGroup">
+            <h2><span jhiTranslate="backendApp.courseGroup.detail.title">Course Group</span> {{ courseGroup.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="backendApp.courseGroup.name">Name</span></dt>
+                <dd>
+                    <span>{{ courseGroup.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="backendApp.courseGroup.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{ courseGroup.startDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="backendApp.courseGroup.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'backendApp.GroupStatus.' + courseGroup.status }}">{{ courseGroup.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="backendApp.courseGroup.teacher">Teacher</span></dt>
+                <dd>
+                    <div *ngIf="courseGroup.teacherId">
+                        <a [routerLink]="['/teacher', courseGroup.teacherId, 'view']">{{ courseGroup.teacherId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="backendApp.courseGroup.teacher">Teacher</span></dt>
+                <dd>
+                    <div *ngIf="courseGroup.teacherId">
+                        <a [routerLink]="['/planning', courseGroup.teacherId, 'view']">{{ courseGroup.teacherId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/course-group', courseGroup.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="backendApp.student.home.title">Students</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-student" [routerLink]="['/student/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="backendApp.student.home.createLabel">
+            Create a new Student
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="students?.length === 0">
+        <span jhiTranslate="backendApp.student.home.notFound">No students found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="students && students.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="backendApp.student.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="backendApp.student.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="middleName"><span jhiTranslate="backendApp.student.middleName">Middle Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="backendApp.student.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateOfBirth"><span jhiTranslate="backendApp.student.dateOfBirth">Date Of Birth</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="gender"><span jhiTranslate="backendApp.student.gender">Gender</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="registerationDate"><span jhiTranslate="backendApp.student.registerationDate">Registeration Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastAccess"><span jhiTranslate="backendApp.student.lastAccess">Last Access</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="backendApp.student.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mobile"><span jhiTranslate="backendApp.student.mobile">Mobile</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="thumbnailPhotoUrl"><span jhiTranslate="backendApp.student.thumbnailPhotoUrl">Thumbnail Photo Url</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fullPhotoUrl"><span jhiTranslate="backendApp.student.fullPhotoUrl">Full Photo Url</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="active"><span jhiTranslate="backendApp.student.active">Active</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="key"><span jhiTranslate="backendApp.student.key">Key</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let student of students ;trackBy: trackId">
+                    <td><a [routerLink]="['/student', student.id, 'view']">{{ student.id }}</a></td>
+                    <td>{{ student.firstName }}</td>
+                    <td>{{ student.lastName }}</td>
+                    <td>{{ student.middleName }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.dateOfBirth | date:'mediumDate' }}</td>
+                    <td jhiTranslate="{{ 'backendApp.Gender.' + student.gender }}">{{ student.gender }}</td>
+                    <td>{{ student.registerationDate | date:'mediumDate' }}</td>
+                    <td>{{ student.lastAccess | date:'medium' }}</td>
+                    <td>{{ student.telephone }}</td>
+                    <td>{{ student.mobile }}</td>
+                    <td>{{ student.thumbnailPhotoUrl }}</td>
+                    <td>{{ student.fullPhotoUrl }}</td>
+                    <td>{{ student.active }}</td>
+                    <td>{{ student.key }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/student', student.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/student', student.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(student)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
